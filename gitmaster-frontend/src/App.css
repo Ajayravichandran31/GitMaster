@@ -789,7 +789,8 @@ button {
 
 .app.dark .welcome-section,
 .app.dark .stat-card,
-.app.dark .quick-card {
+.app.dark .quick-card,
+.app.dark .command-card {
   background: #1f2937;
   border-color: #374151;
 }
@@ -797,14 +798,16 @@ button {
 .app.dark .welcome-section h1,
 .app.dark .section-heading h2,
 .app.dark .stat-card h3,
-.app.dark .quick-card h3 {
+.app.dark .quick-card h3,
+.app.dark .command-card h3 {
   color: #f9fafb;
 }
 
 .app.dark .hero-description,
 .app.dark .section-heading p,
 .app.dark .stat-card p,
-.app.dark .quick-card p {
+.app.dark .quick-card p,
+.app.dark .command-card p {
   color: #9ca3af;
 }
 
@@ -828,4 +831,222 @@ button {
   background: #1e3a8a;
   border-color: #2563eb;
   color: #bfdbfe;
+}
+
+/* ================================
+   LEARN PAGE
+   ================================ */
+
+.learn-header {
+  margin-bottom: 28px;
+}
+
+.learn-header h1 {
+  margin: 8px 0;
+  font-size: 36px;
+  color: #111827;
+}
+
+.learn-levels {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 32px;
+}
+
+.level-button {
+  padding: 10px 18px;
+
+  border: 1px solid #e5e7eb;
+  border-radius: 8px;
+
+  background: #ffffff;
+  color: #374151;
+
+  cursor: pointer;
+  font-size: 14px;
+
+  transition: 0.2s ease;
+}
+
+.level-button:hover {
+  border-color: #2563eb;
+}
+
+.level-button.active {
+  background: #2563eb;
+  color: #ffffff;
+  border-color: #2563eb;
+}
+
+.commands-section {
+  margin-bottom: 40px;
+}
+
+.command-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 18px;
+  margin-top: 20px;
+}
+
+.command-card {
+  background: #ffffff;
+
+  border: 1px solid #e5e7eb;
+  border-radius: 14px;
+
+  padding: 22px;
+
+  transition: 0.2s ease;
+}
+
+.command-card:hover {
+  transform: translateY(-3px);
+
+  border-color: #3b82f6;
+
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.18);
+}
+
+.command-top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  margin-bottom: 18px;
+}
+
+.command-icon {
+  font-size: 25px;
+}
+
+.command-card h3 {
+  margin: 0 0 10px;
+
+  font-size: 20px;
+}
+
+.command-card p {
+  color: #6b7280;
+
+  line-height: 1.6;
+
+  min-height: 48px;
+}
+
+.command-card code {
+  display: block;
+
+  background: #111827;
+  color: #4ade80;
+
+  padding: 12px;
+
+  border-radius: 7px;
+
+  margin: 16px 0;
+
+  font-family: monospace;
+  font-size: 13px;
+
+  overflow-x: auto;
+}
+
+.command-card button {
+  border: none;
+
+  background: none;
+
+  color: #2563eb;
+
+  font-weight: 600;
+
+  cursor: pointer;
+
+  padding: 0;
+}
+
+.command-card button:hover {
+  text-decoration: underline;
+}
+
+.difficulty {
+  padding: 5px 9px;
+
+  border-radius: 20px;
+
+  font-size: 11px;
+  font-weight: 600;
+}
+
+.difficulty.beginner {
+  background: #dcfce7;
+  color: #15803d;
+}
+
+.difficulty.intermediate {
+  background: #fef3c7;
+  color: #b45309;
+}
+
+/* ================================
+   LEARN PAGE DARK MODE
+   ================================ */
+
+.app.dark .learn-header h1 {
+  color: #f9fafb;
+}
+
+.app.dark .level-button {
+  background: #1f2937;
+  border-color: #374151;
+  color: #e5e7eb;
+}
+
+.app.dark .level-button:hover {
+  border-color: #2563eb;
+}
+
+.app.dark .level-button.active {
+  background: #2563eb;
+  border-color: #2563eb;
+  color: #ffffff;
+}
+
+.app.dark .command-card {
+  background: #1f2937;
+  border-color: #374151;
+}
+
+.app.dark .command-card:hover {
+  border-color: #3b82f6;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.25);
+}
+
+.app.dark .command-card p {
+  color: #9ca3af;
+}
+
+/* ================================
+   LEARN PAGE RESPONSIVE
+   ================================ */
+
+@media (max-width: 1000px) {
+  .command-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 650px) {
+  .command-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .learn-header h1 {
+    font-size: 30px;
+  }
+
+  .learn-levels {
+    flex-wrap: wrap;
+  }
 }
