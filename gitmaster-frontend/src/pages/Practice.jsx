@@ -2,8 +2,11 @@ import { useState } from 'react'
 
 function Practice() {
   const [command, setCommand] = useState('')
+  const [commandHistory, setCommandHistory] = useState([])
+  const [historyIndex, setHistoryIndex] = useState(-1)
+
   const suggestions = [
-  'git status',
+  'git status', 
   'git init',
   'git log',
   'git branch',
@@ -27,9 +30,16 @@ const filteredSuggestions = suggestions.filter((item) =>
   const runCommand = () => {
     const enteredCommand = command.trim()
 
-    if (!enteredCommand) {
-      return
-    }
+if (!enteredCommand) {
+  return
+}
+
+setCommandHistory((previous) => [
+  ...previous,
+  enteredCommand
+])
+
+setHistoryIndex(-1)
 
     let result = ''
 
@@ -118,10 +128,45 @@ const filteredSuggestions = suggestions.filter((item) =>
     value={command}
     onChange={(event) => setCommand(event.target.value)}
     onKeyDown={(event) => {
-      if (event.key === 'Enter') {
-        runCommand()
-      }
-    }}
+  if (event.key === 'Enter') {
+    runCommand()
+  }
+
+  if (event.key === 'ArrowUp') {
+    event.preventDefault()
+
+    if (commandHistory.length === 0) {
+      return
+    }
+
+    const newIndex =
+      historyIndex === -1
+        ? commandHistory.length - 1
+        : Math.max(historyIndex - 1, 0)
+
+    setHistoryIndex(newIndex)
+    setCommand(commandHistory[newIndex])
+  }
+
+  if (event.key === 'ArrowDown') {
+    event.preventDefault()
+
+    if (commandHistory.length === 0 || historyIndex === -1) {
+      return
+    }
+
+    const newIndex = historyIndex + 1
+
+    if (newIndex >= commandHistory.length) {
+      setHistoryIndex(-1)
+      setCommand('')
+      return
+    }
+
+    setHistoryIndex(newIndex)
+    setCommand(commandHistory[newIndex])
+  }
+}}
     placeholder="Type a Git command..."
   />
 </div>
