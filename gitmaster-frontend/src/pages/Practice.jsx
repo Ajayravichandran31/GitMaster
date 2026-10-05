@@ -43,9 +43,18 @@ const filteredSuggestions = suggestions.filter((item) =>
       result =
         'Initialized empty Git repository.'
     } else if (enteredCommand === 'git log') {
-      result =
-        'commit a1b2c3d\nAuthor: GitMaster User\nInitial commit'
-    } else if (enteredCommand === 'clear') {
+  result =
+    'commit a1b2c3d\nAuthor: GitMaster User\nInitial commit'
+} else if (enteredCommand === 'git branch') {
+  result =
+    '* main\n  develop'
+} else if (enteredCommand === 'git add') {
+  result =
+    'Changes added to staging area.'
+} else if (enteredCommand === 'git commit') {
+  result =
+    '[main a1b2c3d] Initial commit'
+} else if (enteredCommand === 'clear') {
       setOutput([])
       setCommand('')
       return
