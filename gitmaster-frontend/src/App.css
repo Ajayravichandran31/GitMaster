@@ -1153,3 +1153,30 @@ button {
 .terminal-output {
   color: #d1d5db;
 }
+
+/* Practice command suggestions */
+
+.command-suggestions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 12px;
+  padding-left: 20px;
+}
+
+.command-suggestions button {
+  border: 1px solid #374151;
+  border-radius: 6px;
+  padding: 6px 10px;
+  background: #1f2937;
+  color: #9ca3af;
+  font-family: "Courier New", monospace;
+  font-size: 13px;
+  cursor: pointer;
+  transition: 0.2s ease;
+}
+
+.command-suggestions button:hover {
+  background: #374151;
+  color: #ffffff;
+}
