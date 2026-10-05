@@ -1,61 +1,158 @@
 function Learn() {
   return (
-    <div>
-      <h1>Learn Git</h1>
-      <p>Learn Git commands and concepts step by step.</p>
+    <main className="content">
+      <section className="learn-header">
+        <p className="welcome-text">Git Learning Path 📖</p>
 
-      <div>
-        <button>Beginner</button>
-        <button>Intermediate</button>
-        <button>Advanced</button>
-      </div>
+        <h1>Learn Git</h1>
 
-      <div>
-        <h2>Git Basics</h2>
+        <p className="hero-description">
+          Learn Git commands and concepts step by step,
+          from beginner to advanced.
+        </p>
+      </section>
 
-        <div>
-          <h3>git init</h3>
-          <p>Create a new Git repository.</p>
-          <span>Beginner</span>
-          <button>Learn →</button>
+      <section className="learn-levels">
+        <button className="level-button active">
+          Beginner
+        </button>
+
+        <button className="level-button">
+          Intermediate
+        </button>
+
+        <button className="level-button">
+          Advanced
+        </button>
+      </section>
+
+      <section className="commands-section">
+        <div className="section-heading">
+          <div>
+            <h2>Git Basics</h2>
+            <p>
+              Start with the commands you will use most often.
+            </p>
+          </div>
         </div>
 
-        <div>
-          <h3>git status</h3>
-          <p>Check the current state of your Git repository.</p>
-          <span>Beginner</span>
-          <button>Learn →</button>
-        </div>
+        <div className="command-grid">
+          <div className="command-card">
+            <div className="command-top">
+              <span className="command-icon">📁</span>
+              <span className="difficulty beginner">
+                Beginner
+              </span>
+            </div>
 
-        <div>
-          <h3>git add</h3>
-          <p>Stage changes before committing them.</p>
-          <span>Beginner</span>
-          <button>Learn →</button>
-        </div>
+            <h3>git init</h3>
 
-        <div>
-          <h3>git commit</h3>
-          <p>Save your staged changes to the repository history.</p>
-          <span>Beginner</span>
-          <button>Learn →</button>
-        </div>
+            <p>
+              Create a new Git repository in your project.
+            </p>
 
-        <div>
-          <h3>git log</h3>
-          <p>View the commit history of your repository.</p>
-          <span>Beginner</span>
-          <button>Learn →</button>
-        </div>
+            <code>git init</code>
 
-        <div>
-          <h3>git branch</h3>
-          <p>Create, list, and manage Git branches.</p>
-          <span>Intermediate</span>
-          <button>Learn →</button>
+            <button>Learn →</button>
+          </div>
+
+          <div className="command-card">
+            <div className="command-top">
+              <span className="command-icon">🔍</span>
+              <span className="difficulty beginner">
+                Beginner
+              </span>
+            </div>
+
+            <h3>git status</h3>
+
+            <p>
+              Check the current state of your Git repository.
+            </p>
+
+            <code>git status</code>
+
+            <button>Learn →</button>
+          </div>
+
+          <div className="command-card">
+            <div className="command-top">
+              <span className="command-icon">➕</span>
+              <span className="difficulty beginner">
+                Beginner
+              </span>
+            </div>
+
+            <h3>git add</h3>
+
+            <p>
+              Stage changes before committing them.
+            </p>
+
+            <code>git add .</code>
+
+            <button>Learn →</button>
+          </div>
+
+          <div className="command-card">
+            <div className="command-top">
+              <span className="command-icon">💾</span>
+              <span className="difficulty beginner">
+                Beginner
+              </span>
+            </div>
+
+            <h3>git commit</h3>
+
+            <p>
+              Save your staged changes to repository history.
+            </p>
+
+            <code>git commit -m "message"</code>
+
+            <button>Learn →</button>
+          </div>
+
+          <div className="command-card">
+            <div className="command-top">
+              <span className="command-icon">📜</span>
+              <span className="difficulty beginner">
+                Beginner
+              </span>
+            </div>
+
+            <h3>git log</h3>
+
+            <p>
+              View the commit history of your repository.
+            </p>
+
+            <code>git log</code>
+
+            <button>Learn →</button>
+          </div>
+
+          <div className="command-card">
+            <div className="command-top">
+              <span className="command-icon">🌿</span>
+              <span className="difficulty intermediate">
+                Intermediate
+              </span>
+            </div>
+
+            <h3>git branch</h3>
+
+            <p>
+              Create, list, and manage Git branches.
+            </p>
+
+            <code>git branch</code>
+
+            <button>Learn →</button>
+          </div>
         </div>
-      </div>
-    </div>
+      </section>
+    </main>
   )
 }
 

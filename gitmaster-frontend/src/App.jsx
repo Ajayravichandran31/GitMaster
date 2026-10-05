@@ -1,4 +1,4 @@
-import { Routes, Route } from 'react-router-dom'
+import { Routes, Route, NavLink } from 'react-router-dom'
 import Learn from './pages/Learn.jsx'
 import { useEffect, useState } from 'react'
 import './App.css'
@@ -42,13 +42,22 @@ useEffect(() => {
       <div className="main-layout">
         <aside className="sidebar">
           <nav>
-            <a className="nav-item active" href="#">
-              🏠 <span>Home</span>
-            </a>
-
-            <a className="nav-item" href="#">
-              📖 <span>Learn</span>
-            </a>
+            <NavLink
+  to="/"
+  className={({ isActive }) =>
+    `nav-item ${isActive ? 'active' : ''}`
+  }
+>
+  🏠 <span>Home</span>
+</NavLink>
+            <NavLink
+  to="/learn"
+  className={({ isActive }) =>
+    `nav-item ${isActive ? 'active' : ''}`
+  }
+>
+  📖 <span>Learn</span>
+</NavLink>
 
             <a className="nav-item" href="#">
               💻 <span>Practice</span>
@@ -84,9 +93,13 @@ useEffect(() => {
               ⚙️ <span>Settings</span>
             </a>
           </div>
-        </aside>
+                </aside>
 
-        <main className="content">
+        <Routes>
+          <Route
+            path="/"
+            element={
+              <main className="content">
           <section className="welcome-section">
             <div>
               <p className="welcome-text">Welcome back, Ajay! 👋</p>
@@ -240,7 +253,15 @@ useEffect(() => {
               <button>Stash</button>
             </div>
           </section>
-        </main>
+                      </main>
+            }
+          />
+
+          <Route
+            path="/learn"
+            element={<Learn />}
+          />
+        </Routes>
       </div>
     </div>
   )
