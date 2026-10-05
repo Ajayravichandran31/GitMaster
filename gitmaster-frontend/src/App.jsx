@@ -1,5 +1,6 @@
 import { Routes, Route, NavLink } from 'react-router-dom'
 import Learn from './pages/Learn.jsx'
+import Practice from './pages/Practice.jsx'
 import { useEffect, useState } from 'react'
 import './App.css'
 function App() {
@@ -59,9 +60,14 @@ useEffect(() => {
   📖 <span>Learn</span>
 </NavLink>
 
-            <a className="nav-item" href="#">
-              💻 <span>Practice</span>
-            </a>
+            <NavLink
+  to="/practice"
+  className={({ isActive }) =>
+    `nav-item ${isActive ? 'active' : ''}`
+  }
+>
+  💻 <span>Practice</span>
+</NavLink>
 
             <a className="nav-item" href="#">
               ❓ <span>Quizzes</span>
@@ -256,11 +262,14 @@ useEffect(() => {
                       </main>
             }
           />
-
+<Route
+  path="/learn"
+  element={<Learn />}
+/>
           <Route
-            path="/learn"
-            element={<Learn />}
-          />
+  path="/practice"
+  element={<Practice />}
+ />
         </Routes>
       </div>
     </div>
