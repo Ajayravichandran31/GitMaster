@@ -1026,3 +1026,130 @@ button {
     flex-wrap: wrap;
   }
 }
+
+/* ================================
+   PRACTICE TERMINAL
+   ================================ */
+
+.practice-terminal {
+  width: 100%;
+  max-width: 900px;
+  margin-top: 30px;
+  border-radius: 14px;
+  overflow: hidden;
+  background: #111827;
+  border: 1px solid #374151;
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.15);
+}
+
+.terminal-header {
+  height: 46px;
+  display: flex;
+  align-items: center;
+  padding: 0 18px;
+  background: #1f2937;
+  border-bottom: 1px solid #374151;
+}
+
+.terminal-header span {
+  color: #d1d5db;
+  font-size: 13px;
+  font-weight: 600;
+}
+
+.terminal-body {
+  min-height: 360px;
+  max-height: 500px;
+  padding: 22px;
+  overflow-y: auto;
+  font-family: "Courier New", monospace;
+  font-size: 14px;
+  line-height: 1.7;
+  color: #d1d5db;
+}
+
+.terminal-body > div {
+  white-space: pre-wrap;
+}
+
+.terminal-input {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-top: 8px;
+}
+
+.terminal-input span {
+  color: #4ade80;
+  font-weight: 700;
+}
+
+.terminal-input input {
+  flex: 1;
+  border: none;
+  outline: none;
+  background: transparent;
+  color: #f9fafb;
+  font-family: "Courier New", monospace;
+  font-size: 14px;
+}
+
+.terminal-input input::placeholder {
+  color: #6b7280;
+}
+
+/* Practice terminal on mobile */
+
+@media (max-width: 650px) {
+  .practice-terminal {
+    margin-top: 20px;
+    border-radius: 10px;
+  }
+
+  .terminal-body {
+    min-height: 300px;
+    padding: 16px;
+    font-size: 13px;
+  }
+}
+/* Terminal window dots */
+
+.terminal-dots {
+  display: flex;
+  gap: 7px;
+  margin-right: 12px;
+}
+
+.dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  display: inline-block;
+}
+
+.dot.red {
+  background: #ff5f57;
+}
+
+.dot.yellow {
+  background: #febc2e;
+}
+
+.dot.green {
+  background: #28c840;
+}
+
+/* Practice terminal text colors */
+
+.terminal-welcome {
+  color: #d1d5db;
+}
+
+.terminal-command {
+  color: #60a5fa;
+  font-weight: 600;
+}
+
+.terminal-output {
+  color: #d1d5db;
+}
