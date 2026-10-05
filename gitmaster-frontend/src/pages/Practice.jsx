@@ -2,6 +2,17 @@ import { useState } from 'react'
 
 function Practice() {
   const [command, setCommand] = useState('')
+  const suggestions = [
+  'git status',
+  'git init',
+  'git log',
+  'git branch',
+  'git add',
+  'git commit'
+]
+const filteredSuggestions = suggestions.filter((item) =>
+  item.startsWith(command.trim())
+)
   const [output, setOutput] = useState([
   {
     type: 'welcome',
@@ -91,20 +102,34 @@ function Practice() {
 ))}
 
           <div className="terminal-input">
-            <span>$</span>
+  <span>$</span>
 
-            <input
-              type="text"
-              value={command}
-              onChange={(event) => setCommand(event.target.value)}
-              onKeyDown={(event) => {
-                if (event.key === 'Enter') {
-                  runCommand()
-                }
-              }}
-              placeholder="Type a Git command..."
-            />
-          </div>
+  <input
+    type="text"
+    value={command}
+    onChange={(event) => setCommand(event.target.value)}
+    onKeyDown={(event) => {
+      if (event.key === 'Enter') {
+        runCommand()
+      }
+    }}
+    placeholder="Type a Git command..."
+  />
+</div>
+
+{command.trim() && filteredSuggestions.length > 0 && (
+  <div className="command-suggestions">
+    {filteredSuggestions.map((suggestion) => (
+      <button
+        key={suggestion}
+        type="button"
+        onClick={() => setCommand(suggestion)}
+      >
+        {suggestion}
+      </button>
+    ))}
+  </div>
+)}
         </div>
       </section>
     </main>
