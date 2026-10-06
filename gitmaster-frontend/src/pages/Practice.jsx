@@ -55,15 +55,26 @@ setHistoryIndex(-1)
     } else if (enteredCommand === 'git log') {
   result =
     'commit a1b2c3d\nAuthor: GitMaster User\nInitial commit'
+} else if (enteredCommand === 'git log --oneline') {
+  result =
+    'a1b2c3d Initial commit'
 } else if (enteredCommand === 'git branch') {
   result =
     '* main\n  develop'
 } else if (enteredCommand === 'git add') {
   result =
     'Changes added to staging area.'
+} else if (enteredCommand === 'git add .') {
+  result =
+    'All changes added to staging area.'
 } else if (enteredCommand === 'git commit') {
   result =
     '[main a1b2c3d] Initial commit'
+} else if (enteredCommand.startsWith('git commit -m ')) {
+  const message = enteredCommand.slice(15).replace(/^"|"$/g, '')
+
+  result =
+    `[main a1b2c3d] ${message}`
 } else if (enteredCommand === 'clear') {
       setOutput([])
       setCommand('')
