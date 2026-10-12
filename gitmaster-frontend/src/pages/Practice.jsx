@@ -4,6 +4,15 @@ function Practice() {
   const [command, setCommand] = useState('')
   const [commandHistory, setCommandHistory] = useState([])
   const [historyIndex, setHistoryIndex] = useState(-1)
+  const [workflowStage, setWorkflowStage] = useState('working')
+  
+  const [branches, setBranches] = useState(['main', 'develop'])
+  const [activeBranch, setActiveBranch] = useState('main')
+  const [branchCommits, setBranchCommits] = useState({
+    main: ['a1b2c3d'],
+    develop: []
+  })
+
 
   const suggestions = [
   'git status', 
@@ -58,23 +67,77 @@ setHistoryIndex(-1)
 } else if (enteredCommand === 'git log --oneline') {
   result =
     'a1b2c3d Initial commit'
+
 } else if (enteredCommand === 'git branch') {
-  result =
-    '* main\n  develop'
+  result = branches
+    .map((branch) => `${branch === activeBranch ? '* ' : '  '}${branch}`)
+    .join('\n')
+} else if (enteredCommand.startsWith('git branch ')) {
+  const newBranch = enteredCommand.slice('git branch '.length).trim()
+
+  if (!newBranch || branches.includes(newBranch)) {
+    result = `Branch '${newBranch}' already exists or is invalid.`
+  } else {
+    setBranches((previous) => [...previous, newBranch])
+    setBranchCommits((previous) => ({
+      ...previous,
+      [newBranch]: [...(previous[activeBranch] || [])]
+    }))
+    result = `Created branch '${newBranch}'.`
+  }
+} else if (
+  enteredCommand.startsWith('git switch ') ||
+  enteredCommand.startsWith('git checkout ')
+) {
+  const targetBranch = enteredCommand.startsWith('git switch ')
+    ? enteredCommand.slice('git switch '.length).trim()
+    : enteredCommand.slice('git checkout '.length).trim()
+
+  if (branches.includes(targetBranch)) {
+    setActiveBranch(targetBranch)
+    result = `Switched to branch '${targetBranch}'.`
+  } else {
+    result = `Branch '${targetBranch}' not found.`
+  }
 } else if (enteredCommand === 'git add') {
+
   result =
     'Changes added to staging area.'
 } else if (enteredCommand === 'git add .') {
   result =
     'All changes added to staging area.'
-} else if (enteredCommand === 'git commit') {
-  result =
-    '[main a1b2c3d] Initial commit'
-} else if (enteredCommand.startsWith('git commit -m ')) {
-  const message = enteredCommand.slice(15).replace(/^"|"$/g, '')
 
-  result =
-    `[main a1b2c3d] ${message}`
+} else if (enteredCommand === 'git commit') {
+  const commitId = Math.random().toString(16).slice(2, 9)
+
+  setBranchCommits((previous) => ({
+    ...previous,
+    [activeBranch]: [
+      ...(previous[activeBranch] || []),
+      commitId
+    ]
+  }))
+
+  setWorkflowStage('repository')
+  result = `[${activeBranch} ${commitId}] Initial commit`
+} else if (enteredCommand.startsWith('git commit -m ')) {
+  const message = enteredCommand
+    .slice(15)
+    .replace(/^"|"$/g, '')
+
+  const commitId = Math.random().toString(16).slice(2, 9)
+
+  setBranchCommits((previous) => ({
+    ...previous,
+    [activeBranch]: [
+      ...(previous[activeBranch] || []),
+      commitId
+    ]
+  }))
+
+  setWorkflowStage('repository')
+  result = `[${activeBranch} ${commitId}] ${message}`
+
 } else if (enteredCommand === 'clear') {
       setOutput([])
       setCommand('')
@@ -110,7 +173,10 @@ setHistoryIndex(-1)
         </p>
       </section>
 
-      <section className="practice-terminal">
+      
+      <div className="practice-workspace">
+        <section className="practice-terminal">
+
         <div className="terminal-header">
   <div className="terminal-dots">
     <span className="dot red"></span>
@@ -195,9 +261,62 @@ setHistoryIndex(-1)
     ))}
   </div>
 )}
+        
         </div>
       </section>
+
+      <section className="workflow-panel">
+        <h2>Git Workflow</h2>
+        <p>See how Git commands move your changes.</p>
+
+        <div className={`workflow-stage ${workflowStage === 'working' ? 'active' : ''}`}>
+          <strong>1. Working Directory</strong>
+          <p>Your files and changes</p>
+        </div>
+
+        <div className="workflow-arrow">↓</div>
+
+        <div className={`workflow-stage ${workflowStage === 'staging' ? 'active' : ''}`}>
+          <strong>2. Staging Area</strong>
+          <p>Changes ready for a commit</p>
+        </div>
+
+        <div className="workflow-arrow">↓</div>
+
+        <div className={`workflow-stage ${workflowStage === 'repository' ? 'active' : ''}`}>
+          <strong>3. Repository</strong>
+          <p>Saved commits</p>
+        </div>
+      </section>
+      
+        <div className="branch-visualization">
+          <h3>Branch Visualization</h3>
+          <p>Current branch: <strong>{activeBranch}</strong></p>
+
+          <div className="branch-list">
+            {branches.map((branch) => (
+              <div
+                key={branch}
+                className={`branch-item ${branch === activeBranch ? 'active' : ''}`}
+              >
+                <span className="branch-dot">●</span>
+                <div>
+                  <strong>{branch}</strong>
+                  <p>
+                    {(branchCommits[branch] || []).length} commit(s)
+                  </p>
+                </div>
+                {branch === activeBranch && (
+                  <span className="branch-active-label">ACTIVE</span>
+                )}
+              </div>
+            ))}
+          </div>
+        </div>
+
+      </div>
     </main>
+
   )
 }
 

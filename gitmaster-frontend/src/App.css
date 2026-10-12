@@ -1180,3 +1180,164 @@ button {
   background: #374151;
   color: #ffffff;
 }
+
+
+/* GitMaster Practice Workflow */
+
+.practice-workspace {
+  display: grid;
+  grid-template-columns: minmax(0, 1.5fr) minmax(260px, 1fr);
+  gap: 24px;
+  align-items: start;
+  margin-top: 30px;
+}
+
+.practice-workspace .practice-terminal {
+  min-width: 0;
+  max-width: none;
+  margin-top: 0;
+}
+
+.workflow-panel {
+  padding: 22px;
+  border: 1px solid #374151;
+  border-radius: 14px;
+  background: #1f2937;
+  color: #e5e7eb;
+}
+
+.workflow-panel h2 {
+  margin: 0 0 8px;
+  font-size: 20px;
+}
+
+.workflow-panel > p {
+  margin: 0 0 22px;
+  color: #9ca3af;
+  font-size: 13px;
+  line-height: 1.5;
+}
+
+.workflow-stage {
+  padding: 16px;
+  border: 1px solid #374151;
+  border-radius: 10px;
+  background: #111827;
+  transition: border-color 0.3s ease, background 0.3s ease,
+    transform 0.3s ease;
+}
+
+.workflow-stage strong {
+  font-size: 14px;
+}
+
+.workflow-stage p {
+  margin: 7px 0 0;
+  color: #9ca3af;
+  font-size: 12px;
+}
+
+.workflow-stage.active {
+  border-color: #60a5fa;
+  background: #172554;
+  transform: translateY(-2px);
+}
+
+.workflow-arrow {
+  padding: 8px 0;
+  text-align: center;
+  color: #60a5fa;
+  font-size: 22px;
+}
+
+@media (max-width: 1000px) {
+  .practice-workspace {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 650px) {
+  .practice-workspace {
+    gap: 18px;
+  }
+
+  .workflow-panel {
+    padding: 16px;
+  }
+}
+
+
+/* Branch Visualization */
+
+.branch-visualization {
+  grid-column: 1 / -1;
+  margin-top: 4px;
+  padding: 22px;
+  border: 1px solid #374151;
+  border-radius: 14px;
+  background: #1f2937;
+  color: #e5e7eb;
+}
+
+.branch-visualization h3 {
+  margin: 0 0 8px;
+  font-size: 18px;
+}
+
+.branch-visualization > p {
+  margin: 0 0 18px;
+  color: #9ca3af;
+  font-size: 13px;
+}
+
+.branch-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+
+.branch-item {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  min-width: 190px;
+  padding: 14px;
+  border: 1px solid #374151;
+  border-radius: 10px;
+  background: #111827;
+  transition: border-color 0.3s ease, background 0.3s ease,
+    transform 0.3s ease;
+}
+
+.branch-item.active {
+  border-color: #60a5fa;
+  background: #172554;
+  transform: translateY(-2px);
+}
+
+.branch-dot {
+  color: #9ca3af;
+  font-size: 18px;
+}
+
+.branch-item.active .branch-dot {
+  color: #60a5fa;
+}
+
+.branch-item strong {
+  font-size: 13px;
+  overflow-wrap: anywhere;
+}
+
+.branch-item p {
+  margin: 5px 0 0;
+  color: #9ca3af;
+  font-size: 12px;
+}
+
+.branch-active-label {
+  margin-left: auto;
+  color: #93c5fd;
+  font-size: 10px;
+  font-weight: 700;
+}
